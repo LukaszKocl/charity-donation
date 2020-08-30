@@ -1,0 +1,28 @@
+
+ <ul class="help--slides-items">
+     {% for institution in institutions %}
+
+        {% if institution.type == value %}
+            <li>
+                <div class="col">
+                    <div class="title">{{ institution.name }}</div>
+                    <div class="subtitle">{{ institution.description }}</div>
+                </div>
+
+                <div class="col"><div class="text">
+                    {% for category in institution.categories.all %}
+                        {% with last=institution.categories.all.last  %}
+
+                            {% if last == category.name %}
+                                {{ category.name }}
+                            {% else %}
+                                {{ category.name }},
+                            {% endif %}
+
+                        {% endwith %}
+                    {% endfor %}
+                </div></div>
+            </li>
+        {% endif %}
+     {% endfor %}
+</ul>
